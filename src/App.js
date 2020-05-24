@@ -1,69 +1,47 @@
-import React from 'react';
-import axios from 'axios';
-import Movie from './Movie';
-import './App.css';
+import React from "react";
+import { HashRouter, Route } from "react-router-dom";
+import Home from "./routes/Home";
+import About from "./routes/About";
+import "./App.css";
+import Navigation from "./components/Navigation";
+/*
+HashRouter, Route를 import한다.  (라우터는 명령을 받고 실행해주는 역할이고, 라우트는 경로와 그에맞는 컴포넌트를 라우터에게 명령을 내리는 역할이다.)
+BrowerRouter도 있는데 깃허브 페이지에 설정하기엔 HashRouter가 더 편하다.
+react-router-dom은 다양한 종류의 라우터들을 가지고 있다.
 
-// setState를 사용하지 않으면 새 state와 함께 render function이 호출되지 않는다.
-class App extends React.Component {
-    state = {
-        isLoading: true,
-        movies: [],
-    };
-    /*
-    add = () => {
-        this.setState((current) => ({ count: current.count + 1 }));
-    };
-    minus = () => {
-        this.setState({ count: this.state.count - 1 });
-    };
+HashRouter를 리턴하도록 한다. 그리고 그 안에 Route를 넣어준다.
+Route 안에는 중요한 props가 들어간다. 하나는 Rendering할 스크린이 들어가고 
+다른 하나는 뭘 할지 정해주는 역할을 한다.
+
+path로 들어가서 그 안의 내용은 component로 전달해준다.
+
+React router는 기본적으로 url을 가져온고 그 다음 비교한다.
+만약 /home, /home/introduction이 있는데 /home/introduction을 이용하면 
+/home, /home/introduction 둘다 화면으로 가져오는 것이다.
+이것을 해결하기 위해 exact = {true}를 사용한다.
+
+하지만 어떻게 두 라우터간에 네이게이트를 할까?
+네이게이션은 모든 페이지에 나오도록 할 것이다. 
+해당 링크를 누르면 페이지 전체가 새로고침 되버린다. html은 새로운 페이지를 갈 떄마다 새로고침을 하기 때문이다.
+리액트가 죽고 새 페이지가 새로고침 되는 것이다. 하지만 우리는 이런 것을 원하지 않는다. 
+인터랙션을 원하지만 그렇다고 페이지를 강제로 새로고침하고 리액트를 죽이는 것은 원하지 않는다.
+
 */
-    getMovies = async() => {
-        const {
-            data: {
-                data: { movies },
-            },
-        } = await axios.get(
-            'https://yts-proxy.now.sh/list_movies.json?sort_by=rating',
-        ); //--> movies를 console.log로 확인하면 이러한 형태이다. 이렇게 써도 된다.
-        // == const movies = await axios.get('https://yts-proxy.now.sh/list_movies.json?sort_by=rating',)
-        //async, await을 하는 이유는 기본적으로 javascript에게
-        //getMovies함수가 조금 시간이 필요하고 그걸 기다려야 한다는 것을 알려주기 위해서 이다.
-        this.setState({ movies, isLoading: false }); //axios에서 받아온 내용을 state에 넣어준다.
-    };
-
-    componentDidMount() {
-        this.getMovies();
-    }
-    render() {
-        const { isLoading, movies } = this.state;
-        return ( <
-            section className = "container" > { ' ' } {
-                isLoading ? ( <
-                    div className = "loader" >
-                    <
-                    span className = "loader__text" > Loading.. < /span>{' '} <
-                    /div>
-                ) : ( <
-                    div className = "movies" > { ' ' } {
-                        movies.map((movie) => (
-                            //실제 Movie를 rendeing 한다.
-                            <
-                            Movie key = { movie.id }
-                            id = { movie.id }
-                            year = { movie.year }
-                            title = { movie.title }
-                            summary = { movie.summary }
-                            poster = { movie.medium_cover_image }
-                            genres = { movie.genres }
-                            />
-                        ))
-                    } { ' ' } <
-                    /div>
-                )
-            } { ' ' } <
-            /section>
-        );
-    }
+function App() {
+    return ( <
+        HashRouter >
+        <
+        Navigation / >
+        <
+        Route path = "/"
+        exact = { true }
+        component = { Home }
+        />{" "} <
+        Route path = "/about"
+        component = { About }
+        />{" "} <
+        /HashRouter>
+    );
 }
 
 export default App;
