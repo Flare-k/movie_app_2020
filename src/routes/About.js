@@ -15,3 +15,6 @@ function About() {
 }
 
 export default About;
+/*
+라우터에 있는 모든 라우트들은 props를 갖는다.
+*/
