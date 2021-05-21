@@ -3,44 +3,38 @@ import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
 import './Movie.css';
 
-//Movie ComponentëŠ” stateê°€ ë”°ë¡œ í•„ìš”í•˜ì§ˆ ì•Šì•„ì„œ classë¡œ êµ¬í˜„í•  í•„ìš”ì—†ë‹¤.
-//img íƒœê·¸ì—ì„œ altì™€ titleì„ ì“°ëŠ” ì´ìœ ëŠ” posterì— ë§ˆìš°ìŠ¤ë¥¼ ì˜¬ë¦¬ë©´ ì œëª©ì´ ëœ¨ê²Œ ëœë‹¤.
+//Movie Component´Â state°¡ µû·Î ÇÊ¿äÇÏÁú ¾Ê¾Æ¼­ class·Î ±¸ÇöÇÒ ÇÊ¿ä¾ø´Ù.
+//img ÅÂ±×¿¡¼­ alt¿Í titleÀ» ¾²´Â ÀÌÀ¯´Â poster¿¡ ¸¶¿ì½º¸¦ ¿Ã¸®¸é Á¦¸ñÀÌ ¶ß°Ô µÈ´Ù.
 function Movie({ id, year, title, summary, poster, genres }) {
-    return ( <
-        div className = "movie" >
-        <
-        Link to = {
-            {
-                pathname: `/movie/${id}`,
-                state: {
-                    year: year,
-                    title: title,
-                    summary: summary,
-                    poster: poster,
-                    genres: genres
+    return ( 
+        <div className = "movie">
+            <Link to = {
+                {
+                    pathname: `/movie/${id}`,
+                    state: {
+                        year: year,
+                        title: title,
+                        summary: summary,
+                        poster: poster,
+                        genres: genres
+                    }
                 }
-            }
-        } >
-
-        <
-        img src = { poster }
-        alt = { title }
-        title = { title }
-        /> <
-        div className = "movie__data" >
-        <
-        h3 className = "movie__title" > { title } < /h3>  <
-        h5 className = "movie__year" > { year } < /h5> <
-        ul className = "movie__genres" > {
-            genres.map((genre, index) => ( <
-                li key = { index }
-                className = "genres__genre" > { genre } < /li>
-            ))
-        } < /ul> <
-        p className = "movie__summary" > { summary.slice(0, 140) }... < /p> < /
-        div > <
-        /Link> < /
-        div >
+            }>
+                <img src = { poster } alt = { title } title = { title }/>
+                <div className = "movie__data">
+                    <h3 className = "movie__title"> { title } </h3>
+                    <h5 className = "movie__year"> { year } </h5>
+                    <ul className = "movie__genres">
+                        {genres.map((genre, index) => (
+                            <li key = { index }
+                                className = "genres__genre"> { genre }
+                            </li>
+                        ))}
+                    </ul> 
+                    <p className = "movie__summary"> { summary.slice(0, 140) }... </p> 
+                </div > 
+            </Link>
+        </div>
     );
 }
 

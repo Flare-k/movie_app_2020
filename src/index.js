@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom';
 import App from './App';
 
 
-ReactDOM.render( < App / > , document.getElementById('root'));
+ReactDOM.render( <App/> , document.getElementById('root'));
+
 /*
-< App / >ì€ Componentì´ë‹¤.
-ComponentëŠ” HTMLì„ ë°˜í™˜í•˜ëŠ” í•¨ìˆ˜ì´ë‹¤.
-Javascriptì™€ HTML ì‚¬ì´ì˜ ì´ëŸ¬í•œ ì¡°í•©ì„ jsxë¼ê³  í•œë‹¤.
+    <App/>Àº ComponentÀÌ´Ù.
+    Component´Â HTMLÀ» ¹İÈ¯ÇÏ´Â ÇÔ¼öÀÌ´Ù.
+    Javascript¿Í HTML »çÀÌÀÇ ÀÌ·¯ÇÑ Á¶ÇÕÀ» jsx¶ó°í ÇÑ´Ù.
 */

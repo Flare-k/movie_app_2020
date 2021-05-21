@@ -3,7 +3,7 @@ import axios from 'axios';
 import Movie from '../components/Movie';
 import './Home.css';
 
-// setStateë¥¼ ì‚¬ìš©í•˜ì§€ ì•Šìœ¼ë©´ ìƒˆ stateì™€ í•¨ê»˜ render functionì´ í˜¸ì¶œë˜ì§€ ì•ŠëŠ”ë‹¤.
+// setState¸¦ »ç¿ëÇÏÁö ¾ÊÀ¸¸é »õ state¿Í ÇÔ²² render functionÀÌ È£ÃâµÇÁö ¾Ê´Â´Ù.
 class Home extends React.Component {
     state = {
         isLoading: true,
@@ -24,11 +24,11 @@ class Home extends React.Component {
             },
         } = await axios.get(
             'https://yts-proxy.now.sh/list_movies.json?sort_by=rating',
-        ); //--> moviesë¥¼ console.logë¡œ í™•ì¸í•˜ë©´ ì´ëŸ¬í•œ í˜•íƒœì´ë‹¤. ì´ë ‡ê²Œ ì¨ë„ ëœë‹¤.
+        ); //--> movies¸¦ console.log·Î È®ÀÎÇÏ¸é ÀÌ·¯ÇÑ ÇüÅÂÀÌ´Ù. ÀÌ·¸°Ô ½áµµ µÈ´Ù.
         // == const movies = await axios.get('https://yts-proxy.now.sh/list_movies.json?sort_by=rating',)
-        //async, awaitì„ í•˜ëŠ” ì´ìœ ëŠ” ê¸°ë³¸ì ìœ¼ë¡œ javascriptì—ê²Œ
-        //getMoviesí•¨ìˆ˜ê°€ ì¡°ê¸ˆ ì‹œê°„ì´ í•„ìš”í•˜ê³  ê·¸ê±¸ ê¸°ë‹¤ë ¤ì•¼ í•œë‹¤ëŠ” ê²ƒì„ ì•Œë ¤ì£¼ê¸° ìœ„í•´ì„œ ì´ë‹¤.
-        this.setState({ movies, isLoading: false }); //axiosì—ì„œ ë°›ì•„ì˜¨ ë‚´ìš©ì„ stateì— ë„£ì–´ì¤€ë‹¤.
+        //async, awaitÀ» ÇÏ´Â ÀÌÀ¯´Â ±âº»ÀûÀ¸·Î javascript¿¡°Ô
+        //getMoviesÇÔ¼ö°¡ Á¶±İ ½Ã°£ÀÌ ÇÊ¿äÇÏ°í ±×°É ±â´Ù·Á¾ß ÇÑ´Ù´Â °ÍÀ» ¾Ë·ÁÁÖ±â À§ÇØ¼­ ÀÌ´Ù.
+        this.setState({ movies, isLoading: false }); //axios¿¡¼­ ¹Ş¾Æ¿Â ³»¿ëÀ» state¿¡ ³Ö¾îÁØ´Ù.
     };
 
     componentDidMount() {
@@ -36,32 +36,33 @@ class Home extends React.Component {
     }
     render() {
         const { isLoading, movies } = this.state;
-        return ( <
-            section className = "container" > { ' ' } {
-                isLoading ? ( <
-                    div className = "loader" >
-                    <
-                    span className = "loader__text" > Loading.. < /span>{' '} < /
-                    div >
-                ) : ( <
-                    div className = "movies" > { ' ' } {
-                        movies.map((movie) => (
-                            //ì‹¤ì œ Movieë¥¼ rendeing í•œë‹¤.
-                            <
-                            Movie key = { movie.id }
-                            id = { movie.id }
-                            year = { movie.year }
-                            title = { movie.title }
-                            summary = { movie.summary }
-                            poster = { movie.medium_cover_image }
-                            genres = { movie.genres }
-                            />
-                        ))
-                    } { ' ' } <
-                    /div>
-                )
-            } { ' ' } <
-            /section>
+        return ( 
+            <section className = "container" > { ' ' } 
+                {isLoading ? 
+                    (
+                        <div className = "loader" >
+                            <span className = "loader__text" > Loading.. </span>{' '} 
+                        </div>
+                    ) 
+                :
+                    (
+                        <div className = "movies" > { ' ' } 
+                            {movies.map((movie) => (
+                                        //½ÇÁ¦ Movie¸¦ rendeing ÇÑ´Ù.
+                                <Movie 
+                                    key = { movie.id }
+                                    id = { movie.id }
+                                    year = { movie.year }
+                                    title = { movie.title }
+                                    summary = { movie.summary }
+                                    poster = { movie.medium_cover_image }
+                                    genres = { movie.genres }
+                                />))
+                            } { ' ' } 
+                        </div>
+                    )
+                } { ' ' } 
+            </section>
         );
     }
 }

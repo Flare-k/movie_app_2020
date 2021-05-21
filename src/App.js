@@ -6,45 +6,35 @@ import Detail from "./routes/Detail";
 import "./App.css";
 import Navigation from "./components/Navigation";
 /*
-HashRouter, Routeë¥¼ importí•œë‹¤.  (ë¼ìš°í„°ëŠ” ëª…ë ¹ì„ ë°›ê³  ì‹¤í–‰í•´ì£¼ëŠ” ì—­í• ì´ê³ , ë¼ìš°íŠ¸ëŠ” ê²½ë¡œì™€ ê·¸ì—ë§žëŠ” ì»´í¬ë„ŒíŠ¸ë¥¼ ë¼ìš°í„°ì—ê²Œ ëª…ë ¹ì„ ë‚´ë¦¬ëŠ” ì—­í• ì´ë‹¤.)
-BrowerRouterë„ ìžˆëŠ”ë° ê¹ƒí—ˆë¸Œ íŽ˜ì´ì§€ì— ì„¤ì •í•˜ê¸°ì—” HashRouterê°€ ë” íŽ¸í•˜ë‹¤.
-react-router-domì€ ë‹¤ì–‘í•œ ì¢…ë¥˜ì˜ ë¼ìš°í„°ë“¤ì„ ê°€ì§€ê³  ìžˆë‹¤.
+HashRouter, Route¸¦ importÇÑ´Ù.  (¶ó¿ìÅÍ´Â ¸í·ÉÀ» ¹Þ°í ½ÇÇàÇØÁÖ´Â ¿ªÇÒÀÌ°í, ¶ó¿ìÆ®´Â °æ·Î¿Í ±×¿¡¸Â´Â ÄÄÆ÷³ÍÆ®¸¦ ¶ó¿ìÅÍ¿¡°Ô ¸í·ÉÀ» ³»¸®´Â ¿ªÇÒÀÌ´Ù.)
+BrowerRouterµµ ÀÖ´Âµ¥ ±êÇãºê ÆäÀÌÁö¿¡ ¼³Á¤ÇÏ±â¿£ HashRouter°¡ ´õ ÆíÇÏ´Ù.
+react-router-domÀº ´Ù¾çÇÑ Á¾·ùÀÇ ¶ó¿ìÅÍµéÀ» °¡Áö°í ÀÖ´Ù.
 
-HashRouterë¥¼ ë¦¬í„´í•˜ë„ë¡ í•œë‹¤. ê·¸ë¦¬ê³  ê·¸ ì•ˆì— Routeë¥¼ ë„£ì–´ì¤€ë‹¤.
-Route ì•ˆì—ëŠ” ì¤‘ìš”í•œ propsê°€ ë“¤ì–´ê°„ë‹¤. í•˜ë‚˜ëŠ” Renderingí•  ìŠ¤í¬ë¦°ì´ ë“¤ì–´ê°€ê³  
-ë‹¤ë¥¸ í•˜ë‚˜ëŠ” ë­˜ í• ì§€ ì •í•´ì£¼ëŠ” ì—­í• ì„ í•œë‹¤.
+HashRouter¸¦ ¸®ÅÏÇÏµµ·Ï ÇÑ´Ù. ±×¸®°í ±× ¾È¿¡ Route¸¦ ³Ö¾îÁØ´Ù.
+Route ¾È¿¡´Â Áß¿äÇÑ props°¡ µé¾î°£´Ù. ÇÏ³ª´Â RenderingÇÒ ½ºÅ©¸°ÀÌ µé¾î°¡°í 
+´Ù¸¥ ÇÏ³ª´Â ¹» ÇÒÁö Á¤ÇØÁÖ´Â ¿ªÇÒÀ» ÇÑ´Ù.
 
-pathë¡œ ë“¤ì–´ê°€ì„œ ê·¸ ì•ˆì˜ ë‚´ìš©ì€ componentë¡œ ì „ë‹¬í•´ì¤€ë‹¤.
+path·Î µé¾î°¡¼­ ±× ¾ÈÀÇ ³»¿ëÀº component·Î Àü´ÞÇØÁØ´Ù.
 
-React routerëŠ” ê¸°ë³¸ì ìœ¼ë¡œ urlì„ ê°€ì ¸ì˜¨ê³  ê·¸ ë‹¤ìŒ ë¹„êµí•œë‹¤.
-ë§Œì•½ /home, /home/introductionì´ ìžˆëŠ”ë° /home/introductionì„ ì´ìš©í•˜ë©´ 
-/home, /home/introduction ë‘˜ë‹¤ í™”ë©´ìœ¼ë¡œ ê°€ì ¸ì˜¤ëŠ” ê²ƒì´ë‹¤.
-ì´ê²ƒì„ í•´ê²°í•˜ê¸° ìœ„í•´ exact = {true}ë¥¼ ì‚¬ìš©í•œë‹¤.
+React router´Â ±âº»ÀûÀ¸·Î urlÀ» °¡Á®¿Â°í ±× ´ÙÀ½ ºñ±³ÇÑ´Ù.
+¸¸¾à /home, /home/introductionÀÌ ÀÖ´Âµ¥ /home/introductionÀ» ÀÌ¿ëÇÏ¸é 
+/home, /home/introduction µÑ´Ù È­¸éÀ¸·Î °¡Á®¿À´Â °ÍÀÌ´Ù.
+ÀÌ°ÍÀ» ÇØ°áÇÏ±â À§ÇØ exact = {true}¸¦ »ç¿ëÇÑ´Ù.
 
-í•˜ì§€ë§Œ ì–´ë–»ê²Œ ë‘ ë¼ìš°í„°ê°„ì— ë„¤ì´ê²Œì´íŠ¸ë¥¼ í• ê¹Œ?
-ë„¤ì´ê²Œì´ì…˜ì€ ëª¨ë“  íŽ˜ì´ì§€ì— ë‚˜ì˜¤ë„ë¡ í•  ê²ƒì´ë‹¤. 
-í•´ë‹¹ ë§í¬ë¥¼ ëˆ„ë¥´ë©´ íŽ˜ì´ì§€ ì „ì²´ê°€ ìƒˆë¡œê³ ì¹¨ ë˜ë²„ë¦°ë‹¤. htmlì€ ìƒˆë¡œìš´ íŽ˜ì´ì§€ë¥¼ ê°ˆ ë–„ë§ˆë‹¤ ìƒˆë¡œê³ ì¹¨ì„ í•˜ê¸° ë•Œë¬¸ì´ë‹¤.
-ë¦¬ì•¡íŠ¸ê°€ ì£½ê³  ìƒˆ íŽ˜ì´ì§€ê°€ ìƒˆë¡œê³ ì¹¨ ë˜ëŠ” ê²ƒì´ë‹¤. í•˜ì§€ë§Œ ìš°ë¦¬ëŠ” ì´ëŸ° ê²ƒì„ ì›í•˜ì§€ ì•ŠëŠ”ë‹¤. 
-ì¸í„°ëž™ì…˜ì„ ì›í•˜ì§€ë§Œ ê·¸ë ‡ë‹¤ê³  íŽ˜ì´ì§€ë¥¼ ê°•ì œë¡œ ìƒˆë¡œê³ ì¹¨í•˜ê³  ë¦¬ì•¡íŠ¸ë¥¼ ì£½ì´ëŠ” ê²ƒì€ ì›í•˜ì§€ ì•ŠëŠ”ë‹¤.
-
+ÇÏÁö¸¸ ¾î¶»°Ô µÎ ¶ó¿ìÅÍ°£¿¡ ³×ÀÌ°ÔÀÌÆ®¸¦ ÇÒ±î?
+³×ÀÌ°ÔÀÌ¼ÇÀº ¸ðµç ÆäÀÌÁö¿¡ ³ª¿Àµµ·Ï ÇÒ °ÍÀÌ´Ù. 
+ÇØ´ç ¸µÅ©¸¦ ´©¸£¸é ÆäÀÌÁö ÀüÃ¼°¡ »õ·Î°íÄ§ µÇ¹ö¸°´Ù. htmlÀº »õ·Î¿î ÆäÀÌÁö¸¦ °¥ ‹š¸¶´Ù »õ·Î°íÄ§À» ÇÏ±â ¶§¹®ÀÌ´Ù.
+¸®¾×Æ®°¡ Á×°í »õ ÆäÀÌÁö°¡ »õ·Î°íÄ§ µÇ´Â °ÍÀÌ´Ù. ÇÏÁö¸¸ ¿ì¸®´Â ÀÌ·± °ÍÀ» ¿øÇÏÁö ¾Ê´Â´Ù. 
+ÀÎÅÍ·¢¼ÇÀ» ¿øÇÏÁö¸¸ ±×·¸´Ù°í ÆäÀÌÁö¸¦ °­Á¦·Î »õ·Î°íÄ§ÇÏ°í ¸®¾×Æ®¸¦ Á×ÀÌ´Â °ÍÀº ¿øÇÏÁö ¾Ê´Â´Ù.
 */
 function App() {
-    return ( <
-        HashRouter >
-        <
-        Navigation / >
-        <
-        Route path = "/"
-        exact = { true }
-        component = { Home }
-        />{" "} <
-        Route path = "/about"
-        component = { About }
-        />{" "} <
-        Route path = "/movie/:id"
-        component = { Detail }
-        />{" "} <
-        /HashRouter>
+    return ( 
+        <HashRouter>
+            <Navigation/>
+            <Route path = "/" exact = { true } component = { Home }/>{" "} 
+            <Route path = "/about" component = { About }/>{" "} 
+            <Route path = "/movie/:id" component = { Detail }/>{" "} 
+        </HashRouter>
     );
 }
 

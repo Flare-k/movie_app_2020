@@ -1,15 +1,15 @@
 import React from 'react';
 
 /*
-Movieì˜ ë‚´ìš©ì„ ê°€ì ¸ì™€ì•¼ í•˜ê¸° ë•Œë¬¸ì— Movie.jsì— Linkë¥¼ ê±¸ì—ˆë‹¤.
+MovieÀÇ ³»¿ëÀ» °¡Á®¿Í¾ß ÇÏ±â ¶§¹®¿¡ Movie.js¿¡ Link¸¦ °É¾ú´Ù.
 
-ë§Œì•½ ì˜í™”ì— ëŒ€í•œ í´ë¦­ ì—†ì´ ê·¸ëƒ¥ /movie-detailì„ ì…ë ¥í•˜ë©´ props-> location->stateëŠ” undefinedê°€ ë  ê²ƒì´ë‹¤.
-ë§Œì•½ undefined ê²½ìš°ë¼ë©´ homeìœ¼ë¡œ Redirectí•  ê²ƒì´ë‹¤.
+¸¸¾à ¿µÈ­¿¡ ´ëÇÑ Å¬¸¯ ¾øÀÌ ±×³É /movie-detailÀ» ÀÔ·ÂÇÏ¸é props-> location->state´Â undefined°¡ µÉ °ÍÀÌ´Ù.
+¸¸¾à undefined °æ¿ì¶ó¸é homeÀ¸·Î RedirectÇÒ °ÍÀÌ´Ù.
 */
 class Detail extends React.Component {
-    //propsì— ëŒ€í•´ ë³´ê³ ì‹¶ë‹¤ë©´ console.log(this.props) í•´ì£¼ë©´ ë¨.
-    //componentê°€ ìƒì„±ë˜ë©´ ìˆ˜í–‰
-    //const { location } = this.props; propsì—ì„œ locationì„ ê°€ì ¸ì˜¨ë‹¤.
+    //props¿¡ ´ëÇØ º¸°í½Í´Ù¸é console.log(this.props) ÇØÁÖ¸é µÊ.
+    //component°¡ »ı¼ºµÇ¸é ¼öÇà
+    //const { location } = this.props; props¿¡¼­ locationÀ» °¡Á®¿Â´Ù.
     componentDidMount() {
         const { location, history } = this.props;
         if (location.state === undefined) {
@@ -18,9 +18,9 @@ class Detail extends React.Component {
     }
     render() {
         const { location } = this.props;
-        //undefined ê²½ìš°ë¥¼ ëŒ€ë¹„.. ì—¬ê¸°ê°€ ë¨¼ì € í˜¸ì¶œë˜ê¸° ë•Œë¬¸ì— ê·¸ë• locationì´ ì—†ë‹¤.
+        //undefined °æ¿ì¸¦ ´ëºñ.. ¿©±â°¡ ¸ÕÀú È£ÃâµÇ±â ¶§¹®¿¡ ±×¶© locationÀÌ ¾ø´Ù.
         if (location.state) {
-            return <span > { location.state.title } < /span>;
+            return <span> { location.state.title } </span>;
         } else {
             return null;
         }
